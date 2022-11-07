@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "edit-json-file": "^1.7.0",
     "react": "latest",
     "react-dom": "latest",
     "survey-core": "latest",
