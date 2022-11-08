@@ -1,19 +1,15 @@
-function getAnswers(options) {
-  options.showDataSaving();
+function getAnswers() {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", "http://localhost:8085/questions/listquestions");
   xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
   xhr.onload = xhr.onerror = function() {
-    if (xhr.status == 200) {
-      options.showDataSavingSuccess();
-      // options.showDataSavingClear();
-    } else {
-      options.showDataSavingError();
-    }
+   
   };
+  xhr.send();
 }
-const questions = getAnswers;
+const questions = getAnswers();
 
+console.log(questions);
 // const answersasync = (body) => {
 //   const answersrequestOptions = {
 //     method: "GET",
