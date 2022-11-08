@@ -19,14 +19,16 @@ function SurveyComponent() {
 
   function saveQuestion(survey, name) {
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8085/users/createUser");
-    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
     let question = survey.getQuestionByName(name);
     let answerObj = new Object();
     if (name === "email") {
+      xhr.open("POST", "http://localhost:8085/users/createUser");
+
       user = question.value;
       answerObj.email = question.value;
     } else {
+      xhr.open("POST", "http://localhost:8085/answers");
+
       let questionObj = {
         id: question.name,
       };
@@ -38,8 +40,9 @@ function SurveyComponent() {
       answerObj.user = userObj;
     }
 
-    console.log(answerObj);
+    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
     xhr.send(JSON.stringify(answerObj));
+    console.log(answerObj);
   }
 
   //   survey.onComplete.add(function(sender, options) {
