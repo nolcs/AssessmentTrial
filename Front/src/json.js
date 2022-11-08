@@ -1,15 +1,42 @@
+let questions = [
+  {
+    id: 1,
+    question: "viva",
+  },
+  {
+    id: 2,
+    question: "er",
+  },
+  {
+    id: 3,
+    question: "beti",
+  },
+];
+
 function getAnswers() {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://localhost:8085/questions/listquestions");
-  xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-  xhr.onload = xhr.onerror = function() {
-   
-  };
-  xhr.send();
+  // xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      const arr = JSON.parse(xhr.responseText);
+      console.log(arr);
+      arr.forEach(element => {
+        questions.push(element);
+      });
+      console.log(questions);
+    }
 }
-const questions = getAnswers();
+xhr.open("GET", "http://localhost:8085/questions/listquestions", true);
+xhr.send(null);
+}
+
+window.onload = function() {
+  getAnswers();
+};
 
 console.log(questions);
+
+// console.log(questions);
 // const answersasync = (body) => {
 //   const answersrequestOptions = {
 //     method: "GET",
@@ -28,21 +55,6 @@ console.log(questions);
 //       }
 //     });
 // };
-
-// const questions = [
-//   {
-//     id: 1,
-//     question: "viva",
-//   },
-//   {
-//     id: 2,
-//     question: "er",
-//   },
-//   {
-//     id: 3,
-//     question: "beti",
-//   },
-// ];
 
 let processedQuestions = [
   {
