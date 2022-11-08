@@ -25,3 +25,33 @@ IMPORTANT NOTES:
 	- We need to store the email to contact him/her later.
 	- (Ignore this if you don't have time) The same user cannot use the form more than once. Use his email for authorization.
 	- There are no multiple versions of the form. EVERY question in the database will be shown to the user.
+
+UI TESTS
+-------
+- Main test
+	- The user can run the whole thing end-2-end
+
+- Buttons
+	- Button shows some change when hovered
+	- Button changes also when clicked
+
+-	Auth
+	- Users cannot enter an invalid email
+	- Users must enter an email to continue
+	- Email sent to backend is correct
+
+- Questions
+	- User only sees one question at a time
+	- When they answer one question they can see the next one
+	- After the last one, they get a new button that lets them now
+	this is the last question and they are about to send answers to DB
+	(use same button but change text and color)
+	- After they sent it, they get a confirmation screen
+	- Answers user sends are stored in DB
+
+- Answers
+	- IF YOU USED MULTIPLE CHOICE:
+		- Users can select one and only one answer
+	- IF YOU USED TEXT:
+		- Users can input text when the question is text-based,
+		and numbers when the question is number-based
