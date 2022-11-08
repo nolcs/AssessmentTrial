@@ -1,33 +1,52 @@
-const answersasync = (body) => {
-  const answersrequestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+function getAnswers(options) {
+  options.showDataSaving();
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost:8085/questions/listquestions");
+  xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+  xhr.onload = xhr.onerror = function() {
+    if (xhr.status == 200) {
+      options.showDataSavingSuccess();
+      // options.showDataSavingClear();
+    } else {
+      options.showDataSavingError();
+    }
   };
+}
+const questions = getAnswers;
 
-  let res = fetch("http://localhost:8081/questions", answersrequestOptions)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data !== undefined) {
-        questions.push(data);
-      }
-    });
-};
+// const answersasync = (body) => {
+//   const answersrequestOptions = {
+//     method: "GET",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(body),
+//   };
 
-const questions = [
-  {
-    id: 1,
-    question: "viva",
-  },
-  {
-    id: 2,
-    question: "er",
-  },
-  {
-    id: 3,
-    question: "beti",
-  },
-];
+//   let res = fetch(
+//     "http://localhost:8085/questions/listquestions",
+//     answersrequestOptions
+//   )
+//     .then((response) => response.json())
+//     .then((data) => {
+//       if (data !== undefined) {
+//         questions.push(data);
+//       }
+//     });
+// };
+
+// const questions = [
+//   {
+//     id: 1,
+//     question: "viva",
+//   },
+//   {
+//     id: 2,
+//     question: "er",
+//   },
+//   {
+//     id: 3,
+//     question: "beti",
+//   },
+// ];
 
 let processedQuestions = [
   {
