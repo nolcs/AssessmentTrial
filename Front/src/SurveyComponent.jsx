@@ -23,17 +23,19 @@ function SurveyComponent() {
     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
     let question = survey.getQuestionByName(name);
     let answerObj = new Object();
-    if (name == "email") {
+    if (name === "email") {
       user = question.value;
       answerObj.email = question.value;
     } else {
-      let questionObj = new Object();
-      let userObj = new Object();
-      questionObj.id = question.name;
+      let questionObj = {
+        id: question.name,
+      };
+      let userObj = {
+        email: user,
+      };
       answerObj.question = questionObj;
       answerObj.answer = question.value;
-      // userObj.id = user;
-      // answerObj.user = userObj; GET userId
+      answerObj.user = userObj;
     }
 
     console.log(answerObj);
