@@ -5,7 +5,10 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esteban.assestmentprojectquestionary.entity.Answer;
+import com.esteban.assestmentprojectquestionary.entity.Question;
+import com.esteban.assestmentprojectquestionary.entity.User;
 import com.esteban.assestmentprojectquestionary.service.impl.AnswerServiceImpl;
+import com.esteban.assestmentprojectquestionary.service.impl.QuestionServiceImpl;
+import com.esteban.assestmentprojectquestionary.service.impl.UserServiceImpl;
 
 @RestController
 @RequestMapping("/answers")
+@CrossOrigin("http://localhost:3000")
 public class AnswerController {
 
 	private final Log LOG = LogFactory.getLog(AnswerController.class);
@@ -38,7 +46,7 @@ public class AnswerController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Answer> createAnswer(@RequestBody Answer answer) {
+	public ResponseEntity<Answer> createAnswer(@RequestBody Answer answer) throws JSONException {
 
 		Answer newAnswer = answerServiceImpl.createAnswer(answer);
 		LOG.info(newAnswer);

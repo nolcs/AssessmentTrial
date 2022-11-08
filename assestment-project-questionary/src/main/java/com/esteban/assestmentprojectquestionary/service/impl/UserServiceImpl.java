@@ -9,7 +9,6 @@ import com.esteban.assestmentprojectquestionary.entity.User;
 import com.esteban.assestmentprojectquestionary.repository.UserRepository;
 import com.esteban.assestmentprojectquestionary.service.UserService;
 
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -33,5 +32,4 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findById(id).orElse(null);
 	}
 
-	
 }

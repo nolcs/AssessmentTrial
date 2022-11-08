@@ -33,14 +33,4 @@ public class AnswerServiceImpl implements AnswerService {
 		return answerRepository.findById(id).orElse(null);
 	}
 
-	/*
-	 * @Override public List<Answer> getAnswersByUser(User user) { List<Answer>
-	 * answers = answerRepository.findByUser(user); return answers; }
-	 * 
-	 * @Override public List<Answer> getAnswerByQuestion(Question question) {
-	 * 
-	 * List<Answer> answers = answerRepository.findByQuestion(question); return
-	 * answers; }
-	 */
-
 }
