@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.esteban.assestmentprojectquestionary.entity.User;
 
-
 public interface UserService {
 
 	List<User> getAllUsers();
