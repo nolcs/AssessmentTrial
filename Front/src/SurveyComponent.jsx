@@ -19,7 +19,7 @@ function SurveyComponent() {
 
   function saveQuestion(survey, name) {
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", " localhost:8085/users/createUser");
+    xhr.open("POST", "http://localhost:8085/users/createUser");
     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
     let question = survey.getQuestionByName(name);
     let answerObj = new Object();
@@ -37,7 +37,7 @@ function SurveyComponent() {
     }
 
     console.log(answerObj);
-    xhr.send(answerObj);
+    xhr.send(JSON.stringify(answerObj));
   }
 
   //   survey.onComplete.add(function(sender, options) {

@@ -25,7 +25,7 @@ import com.esteban.assestmentprojectquestionary.service.impl.UserServiceImpl;
 
 @RestController
 @RequestMapping("/answers")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:3001")
 public class AnswerController {
 
 	private final Log LOG = LogFactory.getLog(AnswerController.class);

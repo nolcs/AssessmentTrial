@@ -17,7 +17,7 @@ import com.esteban.assestmentprojectquestionary.service.impl.QuestionServiceImpl
 
 @RestController
 @RequestMapping("/questions")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:3001")
 public class QuestionController {
 
 	@Autowired

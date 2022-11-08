@@ -18,7 +18,7 @@ import com.esteban.assestmentprojectquestionary.service.impl.UserServiceImpl;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:3001")
 public class UserController {
 
 	@Autowired
