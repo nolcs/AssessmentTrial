@@ -32,6 +32,12 @@ public class AnswerController {
 
 	@Autowired
 	private AnswerServiceImpl answerServiceImpl;
+	
+	@Autowired
+	private UserServiceImpl userServiceImpl;
+	
+	@Autowired
+	private QuestionServiceImpl questionServiceImpl;
 
 	@GetMapping("/listAnswers")
 	public ResponseEntity<List<Answer>> listAllAnswers() {
@@ -47,7 +53,12 @@ public class AnswerController {
 
 	@PostMapping
 	public ResponseEntity<Answer> createAnswer(@RequestBody Answer answer) throws JSONException {
-
+		
+		String email = answer.getUser().getEmail();
+		
+		User user = userServiceImpl.getUserByEmail(email);
+		answer.setUser(user);
+		
 		Answer newAnswer = answerServiceImpl.createAnswer(answer);
 		LOG.info(newAnswer);
 		return ResponseEntity.ok(newAnswer);

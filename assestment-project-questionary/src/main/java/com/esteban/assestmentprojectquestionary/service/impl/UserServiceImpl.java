@@ -32,4 +32,12 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findById(id).orElse(null);
 	}
 
+	@Override
+	public User getUserByEmail(String email) {
+		
+		User user = userRepository.findUserByEmail(email);
+		
+		return user;
+	}
+
 }

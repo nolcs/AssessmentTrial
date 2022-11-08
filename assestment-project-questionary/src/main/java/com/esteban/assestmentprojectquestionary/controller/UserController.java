@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.esteban.assestmentprojectquestionary.entity.User;
 import com.esteban.assestmentprojectquestionary.service.impl.UserServiceImpl;
 
-
 @RestController
 @RequestMapping("/users")
 @CrossOrigin("http://localhost:3001")
@@ -40,7 +39,7 @@ public class UserController {
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 
 		User newUser = userServiceImpl.createUser(user);
-		
+
 		return ResponseEntity.ok(newUser);
 	}
 
@@ -54,7 +53,14 @@ public class UserController {
 		return ResponseEntity.ok(user);
 
 	}
-	
-	
+
+	/*
+	 * @GetMapping("/userid/{email}") public ResponseEntity<Integer> getUserId
+	 * (@PathVariable("email") String email ){
+	 * 
+	 * int id = userServiceImpl.getUserId(email); return ResponseEntity.ok(id);
+	 * 
+	 * }
+	 */
 
 }
