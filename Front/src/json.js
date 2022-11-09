@@ -1,58 +1,34 @@
 let questions = [
   {
-    id: 7,
-    question: "viva",
+    id: 1,
+    question: "How big is your company?",
   },
   {
-    id: 8,
-    question: "er",
+    id: 2,
+    question: "How many users you have?",
   },
   {
-    id: 9,
-    question: "beti",
+    id: 3,
+    question: "What was your IT budget last year?",
   },
 ];
 
-console.log(questions);
-
-function getAnswers() {
-  const xhr = new XMLHttpRequest();
-  // xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-  xhr.open("GET", "http://localhost:8085/questions/listquestions", true);
-  xhr.send();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == XMLHttpRequest.DONE) {
-      const arr = JSON.parse(xhr.responseText);
-      console.log(arr);
-      arr.forEach(element => {
-        // console.log(element);
-        questions.push(element);
-      });
-    }
-  }
-}
-
-window.onload = function() {
-  getAnswers();
-};
-
-// const answersasync = (body) => {
-//   const answersrequestOptions = {
-//     method: "GET",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(body),
+// function getAnswers() {
+//   const xhr = new XMLHttpRequest();
+//   // xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+//   xhr.open("GET", "http://localhost:8085/questions/listquestions", true);
+//   xhr.send();
+//   xhr.onreadystatechange = function () {
+//     if (xhr.readyState == XMLHttpRequest.DONE) {
+//       const arr = JSON.parse(xhr.responseText);
+//       arr.forEach((element) => {
+//         questions.push(element);
+//       });
+//     }
 //   };
-
-//   let res = fetch(
-//     "http://localhost:8085/questions/listquestions",
-//     answersrequestOptions
-//   )
-//     .then((response) => response.json())
-//     .then((data) => {
-//       if (data !== undefined) {
-//         questions.push(data);
-//       }
-//     });
+// }
+// window.onload = function () {
+//   getAnswers();
 // };
 
 let processedQuestions = [
@@ -60,8 +36,7 @@ let processedQuestions = [
     elements: [
       {
         type: "html",
-        html:
-          "You are about to start a questionnaire on Business Strategy. <br>Enter your email below and click <b>Start Quiz</b> to begin.",
+        html: "You are about to start a questionnaire on Business Strategy. <br>Enter your email below and click <b>Start Quiz</b> to begin.",
       },
       {
         type: "text",
@@ -89,50 +64,11 @@ questions.forEach((item) => {
   processedQuestions.push(processedElement);
 });
 
-// console.log(processedQuestions);
-
-const json = new Object();
-
-async function buildJson(){
-  json = {
-    title: "Blockchain afinity",
-    showProgressBar: "bottom",
-    firstPageIsStarted: true,
-    startSurveyText: "Start Quiz",
-    pages: processedQuestions,
-    completedHtml: "<h4>Thank you for your answers</h4>",
-    // awnsersSubmitHandler,
-  };
-}
-
-export default await json;
-
-// console.log(json);
-
-let answerArray = [];
-
-// const awnsersSubmitHandler = (anwserData) => {
-//   // console.log(anwserData);
-//   answerArray = anwserData;
-//   sendAnwsersHandler();
-// };
-
-const sendAnwsersHandler = () => {
-  answerArray.map((item) => {
-    let anwserBody = {
-      questionid: item.questionid,
-      anwser: item.anwser,
-    };
-    const anwserrequestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(anwserBody),
-    };
-    console.log(anwserBody);
-    let res = fetch("http://localhost:8084/anwsers", anwserrequestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
-  });
+export const json = {
+  title: "Blockchain afinity",
+  showProgressBar: "bottom",
+  firstPageIsStarted: true,
+  startSurveyText: "Start Quiz",
+  pages: processedQuestions,
+  completedHtml: "<h4>Thank you for your answers</h4>",
 };

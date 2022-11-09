@@ -12,7 +12,6 @@ function SurveyComponent() {
   const survey = new Model(json);
   let user;
   survey.onValueChanged.add((survey, { name }) => {
-    // console.log(`The ${name} question value has changed to ${value}.`);
     saveQuestion(survey, name);
   });
 
@@ -34,6 +33,7 @@ function SurveyComponent() {
       let userObj = {
         email: user,
       };
+
       answerObj.question = questionObj;
       answerObj.answer = question.value;
       answerObj.user = userObj;
@@ -43,25 +43,6 @@ function SurveyComponent() {
     xhr.send(JSON.stringify(answerObj));
     console.log(answerObj);
   }
-
-  //   survey.onComplete.add(function(sender, options) {
-  //     options.showDataSaving();
-  //     const xhr = new XMLHttpRequest();
-  //     xhr.open("POST", "your/server/url");
-  //     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-  //     xhr.onload = xhr.onerror = function() {
-  //       if (xhr.status == 200) {
-  //         options.showDataSavingSuccess();
-  //         // options.showDataSavingClear();
-  //       } else {
-  //         options.showDataSavingError();
-  //       }
-  //     };
-
-  //     console.log(sender.data);
-  //     console.log(JSON.stringify(sender.data));
-  //     xhr.send(JSON.stringify(sender.data));
-  //   });
 
   return <Survey model={survey} />;
 }
