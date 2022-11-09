@@ -1,42 +1,41 @@
 let questions = [
   {
-    id: 1,
+    id: 7,
     question: "viva",
   },
   {
-    id: 2,
+    id: 8,
     question: "er",
   },
   {
-    id: 3,
+    id: 9,
     question: "beti",
   },
 ];
 
+console.log(questions);
+
 function getAnswers() {
   const xhr = new XMLHttpRequest();
   // xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+  xhr.open("GET", "http://localhost:8085/questions/listquestions", true);
+  xhr.send();
   xhr.onreadystatechange = function() {
     if (xhr.readyState == XMLHttpRequest.DONE) {
       const arr = JSON.parse(xhr.responseText);
       console.log(arr);
       arr.forEach(element => {
+        // console.log(element);
         questions.push(element);
       });
-      console.log(questions);
     }
-}
-xhr.open("GET", "http://localhost:8085/questions/listquestions", true);
-xhr.send(null);
+  }
 }
 
 window.onload = function() {
   getAnswers();
 };
 
-console.log(questions);
-
-// console.log(questions);
 // const answersasync = (body) => {
 //   const answersrequestOptions = {
 //     method: "GET",
@@ -92,24 +91,31 @@ questions.forEach((item) => {
 
 // console.log(processedQuestions);
 
-export const json = {
-  title: "Blockchain afinity",
-  showProgressBar: "bottom",
-  firstPageIsStarted: true,
-  startSurveyText: "Start Quiz",
-  pages: processedQuestions,
-  completedHtml: "<h4>Thank you for your answers</h4>",
-  awnsersSubmitHandler,
-};
+const json = new Object();
+
+async function buildJson(){
+  json = {
+    title: "Blockchain afinity",
+    showProgressBar: "bottom",
+    firstPageIsStarted: true,
+    startSurveyText: "Start Quiz",
+    pages: processedQuestions,
+    completedHtml: "<h4>Thank you for your answers</h4>",
+    // awnsersSubmitHandler,
+  };
+}
+
+export default await json;
+
 // console.log(json);
 
 let answerArray = [];
 
-const awnsersSubmitHandler = (anwserData) => {
-  console.log(anwserData);
-  answerArray = anwserData;
-  sendAnwsersHandler();
-};
+// const awnsersSubmitHandler = (anwserData) => {
+//   // console.log(anwserData);
+//   answerArray = anwserData;
+//   sendAnwsersHandler();
+// };
 
 const sendAnwsersHandler = () => {
   answerArray.map((item) => {
